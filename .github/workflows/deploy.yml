@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: FTP-sync static surface to tenant.kineticgain.com
+    name: FTP-sync static surface to mt.kineticgain.com
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -36,7 +36,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
-          server-dir: /tenant/
+          server-dir: /mt/
           exclude: |
             **/.git*
             **/.git*/**
@@ -49,6 +49,6 @@ jobs:
       - name: Verify live
         run: |
           sleep 30
-          curl -fsSL --max-time 15 "https://tenant.kineticgain.com/" > /tmp/live.html || exit 1
+          curl -fsSL --max-time 15 "https://mt.kineticgain.com/" > /tmp/live.html || exit 1
           grep -q "Tenant Boundary Risk Command Center" /tmp/live.html || (echo "FAIL: live render missing title" && exit 1)
-          echo "OK: live at https://tenant.kineticgain.com/"
+          echo "OK: live at https://mt.kineticgain.com/"

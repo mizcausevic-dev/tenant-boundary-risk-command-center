@@ -10,7 +10,7 @@ Single-page operator surface served as static HTML — no backend, no login, no 
 
 ## Live
 
-[https://tenant.kineticgain.com/](https://tenant.kineticgain.com/)
+[https://mt.kineticgain.com/](https://mt.kineticgain.com/)
 
 ## What this is
 

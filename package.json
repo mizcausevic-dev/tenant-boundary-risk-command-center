@@ -1,0 +1,25 @@
+{
+  "name": "kg-tenant-boundary-risk-command-center",
+  "version": "1.0.0",
+  "description": "Tenant Boundary Risk Command Center \u2014 Kinetic Gain operator surface (static, browser-only).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/structure.test.mjs",
+    "lint": "html-validate index.html",
+    "verify": "node scripts/verify.mjs",
+    "ci": "npm run lint && npm run test"
+  },
+  "devDependencies": {
+    "html-validate": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://mt.kineticgain.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mizcausevic-dev/tenant-boundary-risk-command-center.git"
+  }
+}

@@ -1,7 +1,8 @@
 # Tenant Boundary Risk Command Center
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](./LICENSE)
-[![Status: v0.1-shipped](https://img.shields.io/badge/Status-v0.1--shipped-yellow.svg)](#status)
+[![CI](https://github.com/mizcausevic-dev/tenant-boundary-risk-command-center/actions/workflows/ci.yml/badge.svg)](https://github.com/mizcausevic-dev/tenant-boundary-risk-command-center/actions/workflows/ci.yml)
+[![Status: v1.0-prod](https://img.shields.io/badge/Status-v1.0--prod-brightgreen.svg)](#status)
 [![Static · No backend · No telemetry](https://img.shields.io/badge/Static-No%20backend%20%C2%B7%20No%20telemetry-green.svg)](#static-only)
 
 Operator surface for multi-tenant B2B SaaS isolation posture — blast-radius classification, RLS / dedicated-schema / shared-prefix mapping, cross-tenant data-access audit, lateral-movement risk.
@@ -30,7 +31,7 @@ The page is pre-loaded with synthetic data modeled on **Helix Cloud Platform (mu
 
 ## Status
 
-`v0.1-shipped` — MVP scaffold. Hardening to `v1.0-prod` is a separate squad-discipline pass (CI green, screenshot suite, fixtures dir, scripts/, .release-notes.md).
+`v1.0-prod` — hardened 2026-06-02. CI green on Node 20+22, 15 structure + data-integrity tests passing, HTML5-validated, security headers verified in .htaccess. See `.release-notes.md`.
 
 ## Static only
 

@@ -1,0 +1,54 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: FTP-sync static surface to tenant.kineticgain.com
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify build
+        run: |
+          test -f index.html || (echo "FAIL: index.html missing" && exit 1)
+          test -f .htaccess || (echo "FAIL: .htaccess missing" && exit 1)
+          grep -q "Tenant Boundary Risk Command Center" index.html || (echo "FAIL: index.html missing title" && exit 1)
+          echo "OK: verified"
+          ls -lah
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /tenant/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            README.md
+            CHANGELOG.md
+            LICENSE
+
+      - name: Verify live
+        run: |
+          sleep 30
+          curl -fsSL --max-time 15 "https://tenant.kineticgain.com/" > /tmp/live.html || exit 1
+          grep -q "Tenant Boundary Risk Command Center" /tmp/live.html || (echo "FAIL: live render missing title" && exit 1)
+          echo "OK: live at https://tenant.kineticgain.com/"
